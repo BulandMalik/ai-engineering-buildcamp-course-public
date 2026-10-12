@@ -1,0 +1,12 @@
+[project]
+name = "homework"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "httpx2>=2.13.1",
+    "load-dotenv>=0.1.0",
+    "openai>=3.29.0",
+    "pydantic-ai>=2.55.0",
+]
