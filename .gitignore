@@ -33,3 +33,8 @@ Thumbs.db
 .idea/
 .vscode/
 *.swp
+
+.venv
+tmp
+.env
+.cache
