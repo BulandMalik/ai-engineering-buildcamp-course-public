@@ -1,0 +1,35 @@
+SELECT *
+FROM records
+WHERE span_name = 'trivia_session'
+  --WHERE span_id = 'bd1a176005eea41e'
+  -- 01a18b4e2b574576a32acfb1145b4385
+
+SELECT *
+FROM records
+WHERE span_name = 'trivia_session' OR span_name LIKE 'invoke_agent %'
+ORDER BY start_timestamp DESC
+  --LIMIT 2
+
+SELECT trace_id, span_name, start_timestamp, duration, parent_span_id, span_id
+FROM records
+WHERE span_name = 'trivia_session'
+ORDER BY start_timestamp
+ 
+select *
+from records
+where parent_span_id='bd1a176005eea41e'
+
+
+SELECT
+  trace_id,
+  min(start_timestamp) AS started,
+  count(*) AS spans,
+  max(CASE
+    WHEN span_name = 'trivia_session' THEN 1
+    ELSE 0
+  END) AS grouped_session
+FROM records
+WHERE service_name = 'trivia-agent'
+GROUP BY trace_id
+ORDER BY started DESC
+LIMIT 30
